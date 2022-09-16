@@ -1,5 +1,5 @@
 # Load packages and sheets
-pacman::p_load("dplyr", "tidyr")
+pacman::p_load("dplyr", "tidyr", "googlesheets4")
 figs <- read.csv("Data/figs.csv")
 figs_sources <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTitzfoGBVhnBHkXcxBJezuMulBBkP3skLXCZ6v4PTVd-k6yVzn6yWTF1Fyt4VVY0T4nRTIvBcWapJw/pub?output=csv")
 
@@ -29,3 +29,6 @@ for (x in col_nums){
 
 names(figs_list) = colnames(figs)[13:35]
 temp <- figs_list[[1]]
+
+# Upload to google docs
+gs4_create(name = "figshare_2", sheets = figs_list)
